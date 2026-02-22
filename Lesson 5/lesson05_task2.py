@@ -18,4 +18,6 @@ wait = WebDriverWait(driver, 10)
 button = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "btn-primary")))
 button.click()
 
-sleep(5)
+sleep(1)
+
+driver.quit()

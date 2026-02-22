@@ -22,4 +22,6 @@ button.click()
 alert = driver.switch_to.alert
 alert.accept()
 
-sleep(5)
+sleep(1)
+
+driver.quit()
