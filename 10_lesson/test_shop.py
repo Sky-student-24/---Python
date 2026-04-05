@@ -14,20 +14,26 @@ def test_calculator():
     driver = webdriver.Firefox()
 
     main_page = MainShopPage(driver)
-    main_page.authorization()
+    with allure.step("Авторизация"):
+        main_page.authorization()
 
     shop_page = ShopPage(driver)
-    shop_page.shop()
+    with allure.step("Заполнение корзины товарами"):
+        shop_page.shop()
 
     basket_page = BasketPage(driver)
-    basket_page.get()
-    basket_page.check()
+    with allure.step("Переход в корзину"):
+        basket_page.get()
+    with allure.step("Проверка, что выбранные товары есть в корзине"):
+        basket_page.check()
 
     form_page = FormPage(driver)
-    form_page.form()
+    with allure.step("Заполнение формы данными"):
+        form_page.form()
 
     total = form_page.total()
-    total_value = total.split("$")[-1]
-    assert total_value == "58.29"
+    with allure.step("Сравнение итоговой цены"):
+        total_value = total.split("$")[-1]
+        assert total_value == "58.29"
 
     driver.quit()

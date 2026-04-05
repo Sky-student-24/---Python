@@ -5,12 +5,18 @@ import allure
 class MainShopPage:
 
     def __init__(self, driver):
+        """
+            Инициализирует страницу с переданным драйвером.
+        """
         self._driver = driver
         self._driver.get("https://www.saucedemo.com/")
         self._driver.maximize_window()
 
     @allure.step("Авторизация")
     def authorization(self):
+        """
+            Заполняет поля логин и пароль
+        """
         self._driver.find_element(By.ID, "user-name").send_keys("standard_user")
         self._driver.find_element(By.ID, "password").send_keys("secret_sauce")
         self._driver.find_element(By.ID, "login-button").click()

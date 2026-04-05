@@ -11,10 +11,13 @@ def test_calculator():
     driver = webdriver.Chrome()
 
     calc_page = CalculatorPage(driver)
-    calc_page.search("45")
-    calc_page.push_numbers()
+    with allure.step("Поиск числа 45"):
+        calc_page.search("45")
+    with allure.step("Нажатие кнопок"):
+        calc_page.push_numbers()
 
     result = calc_page.results()
-    assert result == "15"
+    with allure.step("Проверка результата"):
+        assert result == "15"
 
     driver.quit()
